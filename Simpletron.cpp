@@ -27,35 +27,63 @@ int main() {
 	const int BRANCHNEG = 41;
 	const int BRANCHZERO = 42;
 	const int HALT = 43;
-	const short MEM_SIZE = 100; // memory size
-	short memory[MEM_SIZE] = {0,0}; // array memory
-	short accumulator; 
-	short instructionRegister;
-	short operationCode;
-	short operand;
-	short counter = 0;
-	short entry;
+	const int MEM_SIZE = 100; // memory size
+	int memory[MEM_SIZE] = {0,0}; // array memory
+	int accumulator; 
+	int instructionRegister;
+	int operationCode;
+	int operand;
+	int counter = 0;
+	int entry;
 	
-	cout << "*** Bem vindo ao Simpletron! ***\n" <<
-	"* Por favor insira uma instrução (ou data word) por vez em seu programa.\n" <<
-	"* Eu vou digitar o número de alocação e o ponto de interrogação (?).\n" <<
-	"* Então você digita a palavra para a alocação.\n" <<
-	"* Digite o número -99999 para parar de inserir dados no seu programa\n";
+	cout << "*** Bem vindo ao Simpletron! ***\n" 
+		 << "* Por favor insira uma instrucao (ou data word) por vez em seu programa.\n"
+		 << "* Eu vou digitar o numero de alocacao e o ponto de interrogacao (?).\n"
+		 << "* Entao voce digita a palavra para a alocacao.\n" 
+		 << "* Digite o numero -99999 para parar de inserir dados no seu programa\n\n";
+	
+	cout << "Codigo de operacao da linguagem SML (Simpletron Machine language) \tSignificado\n"
+		 << "* Operacoes de entrada/saida\n"
+		 << "READ = 10; \t\tLe uma palavra do teclado para uma posicao especifica da memoria.\n"
+		 << "WRITE = 11; \t\tEscreve na tela uma palavra de uma posicao especifica da memoria.\n"
+		 << "* Operacoes de carregamento e armazenamento\n"
+		 << "LOAD = 20; \t\tCarrega uma palavra de uma posicao especifica na memoria para o acumulador.\n"
+		 << "STORE = 21; \t\tArmazena uma palavra do acumulador para uma posicao especifica na memoria.\n"
+		 << "* Operacoes aritmeticas\n"
+		 << "ADD = 30; \t\tAdiciona uma palavra de uma posicao especifica na memoria a palavra no acumulador (deixa\n"
+		 << "\t\t\to resultado no acumulador)\n"
+		 << "SUBTRACT = 31; \t\tSubtrai uma palavra de uma posicao especifica na memoria da palavra no acumulador (deixa o\n"
+		 << "\t\t\tresultado no acumulador)\n"
+		 << "DIVIDE = 32; \t\tDivide uma palavra de uma posicao especifica na memoria pela palavra no acumulador (deixa\n"
+		 << "\t\t\to resultado no acumulador).\n"
+		 << "MULTIPLY = 33; \t\tMultiplica uma palavra de uma posicao especifica na memoria pela palavra no acumulador\n"
+		 << "\t\t\t(deixa o resultado no acumulador).\n"
+		 << "* Operacoes de transferencia de controle\n"
+		 << "BRANCH = 40; \t\tDesvia para uma posicao especifica na memoria.\n"
+		 << "BRANCHNEG = 41; \tDesvia para uma posicao especifica na memoria se o acumulador for negativo.\n"
+		 << "BRANCHZERO = 42; \tDesvia para uma posicao especifica na memoria se o acumulador for zero.\n"
+		 << "HALT = 43; \t\tSuspende - o programa completou sua tarefa.\n\n"
+		 << "Insira as instrucoes\n";
 	
 	// filling memory
 	cout << setw(2) << counter << " ? ";
 	cin >> entry;
 	
-	while(entry != -9999) {		
+	while(entry != -9999) {	// while don't put the sentinel
+		while (entry < -9999 || entry > 9999) { // entry is invalid
+			cout << setw(2) << counter << " ? ";
+			cin >> entry;
+		} 
+			
 		memory[counter] = entry;
-		counter++;
+		counter++;		
 		cout << setw(2) << counter << " ? ";
-		cin >> entry;
+		cin >> entry;		
 	} 
 	
 	memory[counter] = -9999;
 	cout << "Carregamento do programa completo.\n";
-	cout << "Iniciando a execução do programa.\n";
+	cout << "Iniciando a execucao do programa.\n";
 	
 	// instruction execution cicle
 	counter = 0;
