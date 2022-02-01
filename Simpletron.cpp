@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <cstdlib>
 
 using std::cout;
 using std::cin;
@@ -81,7 +82,6 @@ int main() {
 		cin >> entry;		
 	} 
 	
-	memory[counter] = -9999;
 	cout << "Carregamento do programa completo.\n";
 	cout << "Iniciando a execucao do programa.\n";
 	
@@ -113,29 +113,66 @@ int main() {
 				break;
 			case 30: // add
 				accumulator += memory[operand];
+				
+				if (accumulator > 9999) {
+					cout << "O resultado " << accumulator << " estourou o valor maximo +9999\n" 
+						 << "A execucao do Simpletron foi interrompida\n";
+					system("pause");
+					return 0;
+				}
+				
 				counter++;
 				break;
 			case 31: // subtract
 				accumulator -= memory[operand];
+				
+				if (accumulator < -9999) {
+					cout << "O resultado " << accumulator << " estourou o valor minimo -9999\n" 
+						 << "A execucao do Simpletron foi interrompida\n";
+					system("pause");
+					return 0; 
+				}
+				
 				counter++;
 				break;
 			case 32: // divide
+				if (memory[operand] == 0) {
+					cout << "Voce tentou dividir por zero\n" 
+						 << "A execucao do Simpletron foi interrompida\n";
+					system("pause");
+					return 0;
+				}
+				
 				accumulator /= memory[operand];
 				counter++;
 				break;
 			case 33: // multiply
 				accumulator *= memory[operand];
+				
+				if (accumulator > 9999) {
+					cout << "O resultado " << accumulator << " estourou o valor maximo +9999\n" 
+						 << "A execucao do Simpletron foi interrompida\n";
+					system("pause");
+					return 0;
+				}
+				
 				counter++;
 				break;
-			case 40: // branch
+			case 40: // to branch
 				counter = operand;
 				break;
-			case 41:
+			case 41: // to branch if negative
 				if (accumulator < 0) counter = operand;
 				break;
-			case 42:
+			case 42: // to branch if zero
 				if (accumulator == 0) counter = operand;
-				break;				
+				break;
+			default:
+				cout << "A instrucao " << instructionRegister << " alocada em " << counter 
+					 << " tem codigo invalido\n"
+					 << "A execucao do Simpletron foi interrompida\n";
+					system("pause");
+					return 0;
 		}		
 		
 		instructionRegister = memory[counter];
