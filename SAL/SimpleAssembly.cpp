@@ -16,13 +16,13 @@ using std::strcpy;
 
 int main() {
 	const int MEM_SIZE = 100; // memory size
-	char memory[MEM_SIZE][7]; // array memory
+	char memory[MEM_SIZE][100]; // array memory
 	int accumulator; 
-	char instructionRegister[7];
+	char instructionRegister[100];
 	char operationCode[4];
 	int operand;
 	int counter = 0;
-	char *token[2];
+	char *token[3];
 	char srcName[50];
 	
 	/*Codigos de operacao da linguagem SAL (Simple Assembly language)
@@ -58,8 +58,8 @@ int main() {
 		return -1;
 	}
 	
-	while(source.getline(memory[counter], 7)) {			
-		cout << counter << " " << memory[counter] << '\n';		
+	while(source.getline(memory[counter], 100)) {			
+		cout << memory[counter] << '\n';		
 		counter++;	
 	}	
 	
@@ -71,10 +71,11 @@ int main() {
 	strcpy(instructionRegister, memory[counter]);
 	token[0] = strtok(instructionRegister, " ");	
 	token[1] = strtok('\0', " ");
+	token[2] = strtok('\0', " ");
 	
-	while (strcmp(token[0], "FIM") != 0) {
-		strcpy(operationCode, token[0]);
-		operand = atoi(token[1]);
+	while (strcmp(token[1], "FIM") != 0) {
+		strcpy(operationCode, token[1]);
+		operand = atoi(token[2]);
 		
 		if (!strcmp(operationCode, "LER")) {
 			cout << "? ";
@@ -141,7 +142,7 @@ int main() {
 			if (accumulator == 0) counter = operand;
 			else counter++;			
 		} else {
-			cout << "A instrucao " << instructionRegister << " alocada em " << counter 
+			cout << "A instrucao " << token[1] << " alocada em " << counter 
 				 << " tem codigo invalido\n"
 				 << "A execucao do Simpletron foi interrompida\n";
 				system("pause");
@@ -151,6 +152,7 @@ int main() {
 		strcpy(instructionRegister, memory[counter]);
 		token[0] = strtok(instructionRegister, " ");	
 		token[1] = strtok('\0', " ");
+		token[2] = strtok('\0', " ");
 	}	
 	
 	system("pause");	
