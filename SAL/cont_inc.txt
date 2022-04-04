@@ -1,0 +1,13 @@
+00 LER 99 - 10 (contador de 10 números)
+01 LER 98 - entradas
+02 INC 97 - incrementar o contador (soma 1)
+03 CRG 98 - carrega o valor lido no acumulador
+04 SOM 96 - soma com o valor atual do somatorio (inicialmente 0)
+05 ARM 96 - atualiza o valor do somatorio em sua posicao
+06 CRG 97 - carrega valor atual da contagem no acumulador
+07 SUB 99 - compara com o contador
+08 IRZ 10 - se for igual, ir para linha 10 imprimir o somatorio e fim
+09 IRP 01 - senao, ir para linha 01 ler novo valor
+10 IMP 96 - imprimir somatorio
+11 FIM
+=========11========21========31========41========51========61========71========81========91======99
