@@ -25,7 +25,7 @@ int main() {
 	char *token[3];
 	char srcName[50];
 	
-	/*Codigos de operacao da linguagem SAL (Simple Assembly language)
+	/*Codigos de operacao da linguagem SAL (Simple Assembly Language)
 	* Operacoes de entrada/saida
 	LER: Le uma palavra do teclado para uma posicao especifica da memoria.
 	IMP (imprimir): Escreve na tela uma palavra de uma posicao especifica da memoria.
@@ -33,14 +33,18 @@ int main() {
 	CRG (carregar): Carrega uma palavra de uma posicao especifica na memoria para o acumulador.
 	ARM (armazenar): Armazena uma palavra do acumulador para uma posicao especifica na memoria.
 	* Operacoes aritmeticas
-	SOM (somar): Adiciona uma palavra de uma posicao especifica na memoria a palavra no acumulador (deixa
-		o resultado no acumulador)
-	SUB (subtrair): Subtrai uma palavra de uma posicao especifica na memoria da palavra no acumulador (deixa o
-		resultado no acumulador)
-	DIV (dividir): Divide uma palavra de uma posicao especifica na memoria pela palavra no acumulador (deixa
-		o resultado no acumulador).
+	SOM (somar): Adiciona uma palavra de uma posicao especifica na memoria a palavra no acumulador 
+		(deixa o resultado no acumulador)
+	SUB (subtrair): Subtrai uma palavra de uma posicao especifica na memoria da palavra no acumulador
+		(deixa o resultado no acumulador)
+	DIV (dividir): Divide uma palavra de uma posicao especifica na memoria pela palavra no acumulador 
+		(deixa o resultado no acumulador).
 	MUL (multiplicar): Multiplica uma palavra de uma posicao especifica na memoria pela palavra no acumulador
 		(deixa o resultado no acumulador).
+	INC (incrementar): soma 1 ao elemento de uma posição específica da memória 
+		(não deixa o resultado no acumulador).
+	DEC (decrementar): subtrai 1 do elemento de uma posição específica da memória 
+		(não deixa o resultado no acumulador).
 	* Operacoes de transferencia de controle
 	IRP (ir para): Desvia para uma posicao especifica na memoria.
 	IRN (ir para se negativo): Desvia para uma posicao especifica na memoria se o acumulador for negativo.
@@ -132,6 +136,14 @@ int main() {
 				return 0;
 			}
 			
+			counter++;
+		} else if (!strcmp(operationCode, "INC")) {
+			int inc = atoi(memory[operand]) + 1;
+			itoa(inc, memory[operand], 10);
+			counter++;
+		} else if (!strcmp(operationCode, "DEC")) {
+			int inc = atoi(memory[operand]) - 1;
+			itoa(inc, memory[operand], 10);
 			counter++;
 		} else if (!strcmp(operationCode, "IRP")) {
 			counter = operand;
