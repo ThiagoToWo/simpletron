@@ -1,16 +1,16 @@
 00 LER 98 - 1 (valor do incremento)
-01 LER 97 - 9 (contador de 10 numeros: 0 a 9)
+01 LER 97 - 10 (contador de 10 numeros)
 02 LER 99 - entrada dos valores 
-03 CRG 95 - carrega valor atualizado (inicialmente 0) da contagem no acumulador
-04 SUB 97 - comparar com o contador
-05 IRZ 13 - se for igual, imprimir resultado e ir para o fim
-06 CRG 95 - senao, carrega o valor atual da contagem (inicialmente 0) no contador
-07 SOM 98 - incrementa este valor
-08 ARM 95 - armazena valor atualizado da contagem
-09 CRG 99 - carregar o valor lido
-10 SOM 96 - somar o valor acumulado (inicialmente 0)
-11 ARM 96 - atualizar o valor acumulado na sua posicao
-12 IRP 02 - ler novo valor
+03 CRG 95 - carrega o valor atual da contagem (inicialmente 0) no contador
+04 SOM 98 - incrementa este valor
+05 ARM 95 - armazena valor atualizado da contagem
+06 CRG 99 - carregar o valor lido
+07 SOM 96 - somar o valor acumulado (inicialmente 0)
+08 ARM 96 - atualizar o valor acumulado na sua posicao
+09 CRG 95 - carrega valor atualizado da contagem no acumulador
+10 SUB 97 - comparar com o contador
+11 IRZ 13 - se for igual, ir para linha 13 imprimir resultado e fim
+12 IRP 02 - senao, ler ir para linha 02 e ler novo valor
 13 IMP 96 - imprimir valor acumulado
 14 FIM
 =================================================================================================99
